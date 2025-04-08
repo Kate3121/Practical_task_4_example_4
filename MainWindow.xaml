@@ -5,25 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practical_task_4_example_4_Stetsenko"
         mc:Ignorable="d"
-   Title="StatusBarSample" Height="150" Width="300">
+Title="StatusBarSample" Height="150" Width="300">
 	<DockPanel>
 		<!-- Статусна панель, розташована внизу вікна -->
 		<StatusBar DockPanel.Dock="Bottom">
+			<!-- Визначення елементів для статусної панелі з користувацьким розміщенням -->
+			<StatusBar.ItemsPanel>
+				<ItemsPanelTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<!-- Колонка для першого елемента статусної панелі -->
+							<ColumnDefinition Width="100" />
+							<!-- Колонка для сепаратора -->
+							<ColumnDefinition Width="Auto" />
+							<!-- Колонка для елемента з текстом -->
+							<ColumnDefinition Width="*" />
+							<!-- Колонка для сепаратора -->
+							<ColumnDefinition Width="Auto" />
+							<!-- Колонка для елемента з прогресбаром -->
+							<ColumnDefinition Width="100" />
+						</Grid.ColumnDefinitions>
+					</Grid>
+				</ItemsPanelTemplate>
+			</StatusBar.ItemsPanel>
+
+			<!-- Перший елемент статусної панелі: відображення позиції курсору -->
 			<StatusBarItem>
-				<!-- Текстове поле для відображення позиції курсору -->
 				<TextBlock Name="lblCursorPosition" />
+			</StatusBarItem>
+
+			<!-- Сепаратор між елементами статусної панелі -->
+			<Separator Grid.Column="1" />
+
+			<!-- Другий елемент статусної панелі: відображення шляху до файлу -->
+			<StatusBarItem Grid.Column="2">
+				<TextBlock Text="c:\path\of\current\file.txt" />
+			</StatusBarItem>
+
+			<!-- Сепаратор між елементами статусної панелі -->
+			<Separator Grid.Column="3" />
+
+			<!-- Третій елемент статусної панелі: прогресбар -->
+			<StatusBarItem Grid.Column="4">
+				<ProgressBar Value="50" Width="90" Height="16" />
 			</StatusBarItem>
 		</StatusBar>
 
 		<!-- Текстове поле для введення тексту -->
-		<TextBox AcceptsReturn="True" Name="txtEditor" SelectionChanged="txtEditor_SelectionChanged" Foreground="White" FontSize="17" FontFamily="Comic Sans MS">
+		<TextBox AcceptsReturn="True" Name="txtEditor" SelectionChanged="txtEditor_SelectionChanged" Foreground="White" FontFamily="Comic Sans MS">
 			<!-- Встановлення фону для текстового поля з градієнтом -->
 			<TextBox.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<!-- Перший колір градієнта: чорний -->
-					<GradientStop Color="Black" Offset="0.12"/>
+					<GradientStop Color="Black"/>
 					<!-- Другий колір градієнта: зелений -->
-					<GradientStop Color="#FF0DD474" Offset="0.976"/>
+					<GradientStop Color="#FF0DD474" Offset="1"/>
 				</LinearGradientBrush>
 			</TextBox.Background>
 		</TextBox>
